@@ -1,34 +1,43 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { useState } from "react";
-//Screens
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+// Components
+import Navbar from "./components/Navbar";
+import SideDrawer from "./components/SideDrawer";
+import Backdrop from "./components/Backdrop";
+
+// Screens
 import HomeScreen from "./screens/HomeScreen";
 import ProductScreen from "./screens/ProductScreen";
 import CartScreen from "./screens/CartScreen";
-
-//Components
-import Navbar from "./components/Navbar";
-import Backdrop from "./components/Backdrop";
-import SideDrawer from "./components/SideDrawer";
+import PaymentScreen from "./screens/PaymentScreen";
+import LoginScreen from "./screens/LoginScreen";
+import RegisterScreen from "./screens/RegisterScreen";
+import ManFashionScreen from "./screens/ManFashionScreen";
+import WomanFashionScreen from "./screens/WomanFashionScreen";
 
 function App() {
   const [sideToggle, setSideToggle] = useState(false);
 
   return (
-    <>
-      <Router>
-        <Navbar click={() => setSideToggle(true)} />
-        <SideDrawer show={sideToggle} click={() => setSideToggle(false)}/>
-        <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
-        <main>
-          <Routes>
-            <Route exact path="/" element={<HomeScreen />} />
-            <Route exact path="/product/:id" element={<ProductScreen />} />
-            <Route exact path="/cart" element={<CartScreen />} />
-          </Routes>
-        </main>
-      </Router>
-    </>
+    <Router>
+      <Navbar click={() => setSideToggle(true)} />
+      <SideDrawer show={sideToggle} click={() => setSideToggle(false)} />
+      <Backdrop show={sideToggle} click={() => setSideToggle(false)} />
+      <main className="app">
+        <Switch>
+          <Route exact path="/" component={HomeScreen} />
+          <Route exact path="/product/:id" component={ProductScreen} />
+          <Route exact path="/cart" component={CartScreen} />
+          <Route exact path="/payment" component={PaymentScreen} />
+          <Route exact path='/log-in' component={LoginScreen} />
+          <Route exact path='/register' component={RegisterScreen} />
+          <Route exact path='/man-fashion' component={ManFashionScreen} />
+          <Route exact path='/woman-fashion' component={WomanFashionScreen} />
+        </Switch>
+      </main>
+    </Router>
   );
 }
 

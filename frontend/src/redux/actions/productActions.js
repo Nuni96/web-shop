@@ -34,7 +34,7 @@ export const getProductDetails = (id) => async (dispatch) => {
     });
   } catch (error) {
     dispatch({
-      type: actionTypes.GET_PRODUCTS_FAIL,
+      type: actionTypes.GET_PRODUCT_DETAILS_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
@@ -43,8 +43,6 @@ export const getProductDetails = (id) => async (dispatch) => {
   }
 };
 
-export const removeProductDetails = () => (dispatch) =>{
-  dispatch({
-    type: actionTypes.GET_PRODUCT_DETAILS_RESET
-  })
-}
+export const removeProductDetails = () => (dispatch) => {
+  dispatch({ type: actionTypes.GET_PRODUCT_DETAILS_RESET });
+};
